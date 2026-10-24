@@ -2,6 +2,10 @@
 
 A newspaper-style news reader that assembles headlines from publisher RSS feeds and refreshes its edition every 24 hours. It keeps the latest saved edition if a source is temporarily unavailable. Story links go directly to the publisher.
 
+## Live demo
+
+[Open The Daily Edition](https://daily-edition-newspaper.onrender.com/)
+
 ## Features
 
 - Explore a rotating Earth globe, choose a continent or country edition, and open a dedicated space news desk.
