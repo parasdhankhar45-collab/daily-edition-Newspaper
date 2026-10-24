@@ -37,4 +37,3 @@ The starter edition uses BBC News RSS feeds for World, Business, Technology, and
 
 To make it available online, deploy the Node server on a host that supports a continuously running Node process and persistent storage for `data/`. For a serverless host, move the daily refresh to its scheduled-job/cron feature and store editions, timelines, and shared snapshots in a database or object store.
 
-# daily-edition-Newspaper
