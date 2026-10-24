@@ -36,3 +36,5 @@ In Windows PowerShell, if script execution blocks `npm`, run `npm.cmd start` ins
 The starter edition uses BBC News RSS feeds for World, Business, Technology, and Science, plus The Guardian feeds for World and Culture. The feed list is in `server.js` and can be expanded with sources whose terms allow your intended use. This is a curated feed aggregator, not an exhaustive index of every news site. It displays headlines and excerpts with links to the original publisher rather than republishing full articles.
 
 To make it available online, deploy the Node server on a host that supports a continuously running Node process and persistent storage for `data/`. For a serverless host, move the daily refresh to its scheduled-job/cron feature and store editions, timelines, and shared snapshots in a database or object store.
+
+# daily-edition-Newspaper
