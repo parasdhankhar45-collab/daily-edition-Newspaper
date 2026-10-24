@@ -54,6 +54,17 @@ const GOOGLE_LANGUAGES = { ...READER_LANGUAGES, Chinese: 'zh-CN' };
 const TRANSLATORS = [process.env.LIBRETRANSLATE_URL || 'https://translate.argosopentech.com', 'https://libretranslate.de'];
 const translationCache = new Map();
 
+async function readProviderJson(response, provider) {
+  const body = await response.text();
+  try {
+    return JSON.parse(body);
+  } catch {
+    const isHtml = /^\s*</.test(body);
+    const kind = isHtml ? 'a web page instead of translation data' : 'an invalid response';
+    throw new Error(`${provider} returned ${kind} (HTTP ${response.status}).`);
+  }
+}
+
 function countryFeeds(code) {
   const country = COUNTRIES[code];
   return Object.entries(country.topics).map(([section, topic]) => ({
@@ -196,7 +207,7 @@ async function translateText(text, target) {
     const url = `https://translate.googleapis.com/translate_a/single?client=gtx&sl=auto&tl=${encodeURIComponent(targetCode)}&dt=t&q=${encodeURIComponent(text)}`;
     const response = await fetch(url, { signal: AbortSignal.timeout(20000) });
     if (!response.ok) throw new Error(`Google Translate returned ${response.status}`);
-    const result = await response.json();
+    const result = await readProviderJson(response, 'Google Translate');
     const translated = result[0]?.map(part => part[0] || '').join('').trim();
     if (!translated) throw new Error('Google Translate returned no text');
     if (translationCache.size > 2000) translationCache.delete(translationCache.keys().next().value);
@@ -211,7 +222,7 @@ async function translateText(text, target) {
         signal: AbortSignal.timeout(20000)
       });
       if (!response.ok) throw new Error(`Translator returned ${response.status}`);
-      const result = await response.json();
+      const result = await readProviderJson(response, 'LibreTranslate');
       if (!result.translatedText) throw new Error('Translator returned no text');
       if (translationCache.size > 2000) translationCache.delete(translationCache.keys().next().value);
       translationCache.set(cacheKey, result.translatedText);
