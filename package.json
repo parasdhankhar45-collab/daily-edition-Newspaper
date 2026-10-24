@@ -1,0 +1,8 @@
+{
+  "name": "daily-edition",
+  "version": "1.0.0",
+  "private": true,
+  "description": "A daily AI-assisted newspaper assembled from publisher RSS feeds.",
+  "scripts": { "start": "node server.js" },
+  "engines": { "node": ">=20" }
+}

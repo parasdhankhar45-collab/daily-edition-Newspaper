@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#fbf7ed">
+  <title>The Daily Edition — Your world, in brief</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="paper">
+    <div class="topline"><span id="today">YOUR DAILY BRIEFING</span><span class="live"><i></i> UPDATED DAILY</span></div>
+    <header class="masthead">
+      <div class="brand-mark" aria-hidden="true">D<span>.</span></div>
+      <div><p class="eyebrow">INDEPENDENTLY CURATED · UPDATED DAILY</p><h1>The Daily Edition</h1><p class="masthead-tagline">Big stories. More than one perspective.</p></div>
+      <div class="masthead-side"><span class="masthead-rule"></span><p>A considered look<br>at a changing world.</p><span class="issue-mark">VOL. 01&nbsp; / &nbsp;DAILY</span></div>
+    </header>
+    <nav class="nav" aria-label="News sections"><button class="active" data-filter="All">All stories</button><button id="world-explorer-trigger" class="world-explorer-trigger" type="button">✦ What’s happening in the world</button><button data-filter="World">World</button><button data-filter="Business">Business</button><button data-filter="Technology">Technology</button><button data-filter="Science">Science</button><button data-filter="Culture">Culture</button><button data-filter="Saved">★ Saved</button></nav>
+    <section class="reader-utility" aria-label="Reader tools"><span>READER TOOLS</span><button id="text-smaller" type="button" aria-label="Decrease text size">A−</button><button id="text-larger" type="button" aria-label="Increase text size">A+</button><button id="contrast-toggle" type="button" aria-pressed="false">◐ High contrast</button><button id="share-edition" type="button">Share today’s edition ↗</button><span id="share-status" role="status" aria-live="polite"></span><input id="share-link" type="url" readonly aria-label="Shareable daily edition link" hidden></section>
+    <main>
+      <section class="edition-bar"><div><span class="edition-label">TODAY'S EDITION</span><span id="updated">Gathering the latest headlines…</span></div><div class="edition-actions"><label class="search-box"><span aria-hidden="true">⌕</span><input id="story-search" type="search" placeholder="Search this edition" aria-label="Search headlines, summaries, and sources"></label><label class="country-label" for="country-picker">Edition</label><select id="country-picker" class="country-picker" aria-label="Choose a country"><option value="">Global edition</option></select><button id="refresh" class="refresh" title="Check for an update">↻ <span>Refresh</span></button></div></section>
+      <aside id="edition-context" class="edition-context" aria-label="Local time and weather"><div><span class="context-label">EDITION LOCAL TIME</span><time id="local-clock">Global edition · UTC</time></div><div class="context-weather"><span class="context-label">LOCAL WEATHER</span><span id="local-weather">Choose a country edition for local conditions.</span></div><small>Weather by <a href="https://open-meteo.com/" target="_blank" rel="noopener noreferrer">Open-Meteo</a></small></aside>
+      <div id="notice" class="notice" hidden></div>
+      <section id="lead-story" class="lead-story" aria-label="Lead story" hidden></section>
+      <section id="world-desk" class="world-desk" aria-labelledby="world-desk-title" hidden>
+        <header class="world-desk-header"><div><span class="world-kicker">THE WORLD DESK · SIX CONTINENTS, ONE VIEW</span><h2 id="world-desk-title">What’s happening<br><em>in the world?</em></h2><p>Choose a continent. See the stories shaping its day.</p></div><button id="world-back" class="world-back" type="button"><span>←</span> Back to today’s edition</button></header>
+        <div class="world-desk-layout">
+          <div class="earth-stage">
+            <div class="earth-orbit orbit-one"></div><div class="earth-orbit orbit-two"></div><div class="earth-stars" aria-hidden="true">✦　·　　 ✧　　·　　　 ✦　·　　✧</div>
+            <svg class="earth-globe" viewBox="0 0 520 520" role="group" aria-label="Interactive globe. Choose a continent.">
+              <defs>
+                <radialGradient id="ocean-fill" cx="34%" cy="31%"><stop offset="0" stop-color="#73c9d5"/><stop offset=".24" stop-color="#2689a1"/><stop offset=".64" stop-color="#12536f"/><stop offset="1" stop-color="#061c37"/></radialGradient>
+                <linearGradient id="land-fill" x1="0" x2="1" y1="0" y2="1"><stop stop-color="#c9e2ef" stop-opacity=".08"/><stop offset=".45" stop-color="#a7cde2" stop-opacity=".12"/><stop offset="1" stop-color="#6a9bb8" stop-opacity=".18"/></linearGradient>
+                <radialGradient id="earth-shade" cx="34%" cy="30%"><stop offset=".48" stop-color="#031d2b" stop-opacity="0"/><stop offset=".82" stop-color="#031725" stop-opacity=".2"/><stop offset="1" stop-color="#020d20" stop-opacity=".82"/></radialGradient>
+                <pattern id="earth-texture" patternUnits="userSpaceOnUse" x="-156" y="52" width="832" height="416"><image href="https://eoimages.gsfc.nasa.gov/images/imagerecords/57000/57730/land_ocean_ice_2048.jpg" x="0" y="0" width="832" height="416" preserveAspectRatio="none"/></pattern>
+                <clipPath id="globe-clip"><circle cx="260" cy="260" r="208"/></clipPath>
+                <filter id="globe-shadow" x="-30%" y="-30%" width="160%" height="160%"><feDropShadow dx="0" dy="20" stdDeviation="20" flood-color="#001318" flood-opacity=".4"/></filter>
+                <filter id="earth-noise"><feTurbulence type="fractalNoise" baseFrequency=".045" numOctaves="2" seed="8"/><feColorMatrix values=".5 0 0 0 .2 .5 0 0 0 .35 .5 0 0 0 .4 0 0 0 .16 0"/></filter>
+              </defs>
+              <circle cx="260" cy="260" r="208" fill="url(#ocean-fill)" stroke="#c3ddc9" stroke-opacity=".58" stroke-width="1.5" filter="url(#globe-shadow)"/>
+              <g clip-path="url(#globe-clip)" class="globe-surface">
+                <g class="globe-rotation">
+                <circle cx="260" cy="260" r="208" fill="url(#earth-texture)" pointer-events="none"/>
+                <path class="graticule" d="M52 260h416M75 180h370M75 340h370M260 52v416M180 62c-43 125-43 271 0 396M340 62c43 125 43 271 0 396M112 100c95 73 201 73 296 0M112 420c95-73 201-73 296 0"/>
+                <g class="continent continent-north-america" role="button" tabindex="0" data-continent="North America" aria-label="Explore North America">
+                  <path d="M91 116l27-20 30 3 19 17 30 5 19 20-11 17-27 1-8 20-21 11-11 25-18 8-7 23-19-4-8-23-17-7-6-29-19-14 8-24-9-13 17-16-3-18 16-10zM178 205l20 8 11 17-9 19-17-2-11-18z"/>
+                </g>
+                <g class="continent continent-south-america" role="button" tabindex="0" data-continent="South America" aria-label="Explore South America">
+                  <path transform="translate(-82 110) scale(1 .5)" d="M197 264l27-9 24 12 9 19-8 23-15 13-1 29-16 31-5 30-15 24-12-19 1-25-13-22 4-26-13-20 2-24-13-18z"/>
+                </g>
+                <g class="continent continent-europe" role="button" tabindex="0" data-continent="Europe" aria-label="Explore Europe">
+                  <path d="M254 152l17-14 21 3 10 13 20 2 8 13-10 10-24-2-9 11-18-4-14 8-13-10 4-16-9-8zM298 181l10-5 8 7-4 12-10 1z"/>
+                </g>
+                <g class="continent continent-africa" role="button" tabindex="0" data-continent="Africa" aria-label="Explore Africa">
+                  <path d="M270 202l28-7 24 13 8 23-12 19-7 23-16 22-7 29-18 25-14-8-7-26-14-21 1-25-10-17 9-19-1-19 16-12z"/>
+                </g>
+                <g class="continent continent-asia" role="button" tabindex="0" data-continent="Asia" aria-label="Explore Asia">
+                  <path d="M322 131l23-12 30 5 16-8 30 12 24 1 19 18-7 17 16 12-9 20-24 7-10 22-23 4-15 20-22-8-19 12-20-14-17 2-14-18-18-1-11-15 13-15-5-17 12-11 5-18 20-5 8-19zM386 263l17 5 6 18-13 10-14-10zM350 249l15 4-2 10-14 1z"/>
+                </g>
+                <g class="continent continent-oceania" role="button" tabindex="0" data-continent="Oceania" aria-label="Explore Oceania">
+                  <path d="M382 326l24-12 25 7 17 18-9 21-23 10-26-7-16-17zM452 371l9-5 8 11-6 12-11-5zM364 300l6-5 6 8-7 7z"/>
+                </g>
+                <g class="cloud-bands" aria-hidden="true"><path d="M83 199c49-34 91-28 124-7m-138 18c46-31 95-30 136-7M282 321c50-31 93-27 132-5m-144 17c49-27 98-25 139-3M310 117c35-19 66-19 93-4"/><path d="M111 368c30-17 58-17 83-6m127-182c36-15 64-12 88 3"/></g>
+                <g class="map-labels" aria-hidden="true"><text x="124" y="157">N. AMERICA</text><text x="142" y="295">S. AMERICA</text><text x="263" y="177">EUROPE</text><text x="278" y="269">AFRICA</text><text x="376" y="175">ASIA</text><text x="407" y="353">OCEANIA</text></g>
+                <g class="map-pins" aria-hidden="true"><circle cx="151" cy="166" r="4"/><circle cx="285" cy="225" r="4"/><circle cx="331" cy="181" r="4"/><circle cx="406" cy="192" r="4"/><circle cx="295" cy="278" r="4"/></g>
+                <circle cx="260" cy="260" r="208" fill="url(#earth-shade)" pointer-events="none"/>
+                <circle cx="260" cy="260" r="207" fill="#a2d2cc" opacity=".12" filter="url(#earth-noise)" pointer-events="none"/>
+                </g>
+              </g>
+              <circle cx="260" cy="260" r="208" fill="none" stroke="#7bdaf2" stroke-opacity=".54" stroke-width="2"/>
+              <g class="iss-orbit" role="button" tabindex="0" aria-label="Visit the International Space Station and read space news" data-space-desk>
+                <circle class="iss-hit-area" cx="474" cy="260" r="23" fill="transparent" pointer-events="all"/>
+                <g class="iss-icon"><path d="M475 255l-17-8-9 9 17 7-8 8 4 3 11-8 12 3 5-4-8-7 12-12-4-3-14 10z"/><path d="M438 239l15 9m-18 1 14 9m52-39 15 7m-11-13 15 8m-3 28 14 8m-11-13 14 8"/></g>
+                <circle class="iss-beacon" cx="474" cy="260" r="5" pointer-events="none"/><title>Open space news</title>
+              </g>
+            </svg>
+            <p class="earth-instruction"><span>✦</span> Select a continent, or click the orbiting station for space news</p>
+            <div id="continent-shortcuts" class="continent-shortcuts" aria-label="Choose a continent"></div>
+          </div>
+          <aside id="region-panel" class="region-panel" aria-live="polite"><div class="region-empty"><span class="region-empty-orbit">◎</span><span class="world-kicker">YOUR WORLD, IN CONTEXT</span><h3>Pick a place<br>to begin.</h3><p>Tap any continent on the globe to bring its top stories together.</p><div class="region-empty-meta"><span>01</span> CONTINENT AT A TIME</div></div></aside>
+        </div>
+        <div class="world-desk-foot"><span>THE DAILY EDITION</span><span>Independent coverage, connected by place.</span><button id="world-back-bottom" type="button">Return to the daily paper ↑</button></div>
+      </section>
+      <section class="pulse" aria-label="Today's coverage at a glance"><div class="pulse-heading"><span class="pulse-kicker">THE NEWSROOM</span><h2>Today, in perspective</h2></div><div class="pulse-stat"><span id="story-count">—</span><small>STORIES</small></div><div class="pulse-stat"><span id="source-count">—</span><small>SOURCES</small></div><div class="pulse-stat"><span id="compare-count">—</span><small>MULTI-SOURCE</small></div><div class="pulse-note"><span class="pulse-orbit">✳</span><p id="pulse-note">A daily snapshot of the stories we're following.</p></div></section>
+      <section class="reader-tools" aria-label="Reading options"><div class="reader-intro"><span class="reader-icon">Aa</span><div><strong>Make it easier to read</strong><small>Free hosted translation · kid mode works offline</small></div></div><label class="language-control" for="language-picker"><span>LANGUAGE</span><select id="language-picker"><option>English</option><option>Hindi</option><option>Spanish</option><option>French</option><option>Portuguese</option><option>German</option><option>Japanese</option><option>Arabic</option><option>Bengali</option><option>Chinese</option></select></label><label class="kids-control"><input id="kids-mode" type="checkbox"><span class="switch" aria-hidden="true"></span><span class="kids-copy"><b>Kid-friendly</b><small>Simple words for ages 8–10</small></span></label><button id="apply-reader-mode" class="reader-apply">Apply <span>→</span></button><span id="reader-status" class="reader-status" aria-live="polite"></span></section>
+      <details class="personalize"><summary><span class="personalize-icon">✳</span><span><b>Personalize my edition</b><small id="personalize-summary">Choose the topics and publishers you want to see</small></span><span class="personalize-arrow">⌄</span></summary><div class="personalize-content"><fieldset><legend>TOPICS TO FOLLOW</legend><div id="topic-options" class="preference-options"></div></fieldset><fieldset><legend>NEWS SOURCES</legend><div id="source-options" class="preference-options"></div></fieldset><button id="reset-preferences" class="reset-preferences" type="button">Reset to all stories</button></div></details>
+      <div id="followed-topics" class="followed-topics" aria-label="Followed topics" hidden></div>
+      <section id="saved-tools" class="saved-tools" aria-label="Reading list folders" hidden><div><strong>Reading list</strong><span>Keep saved stories organized.</span></div><label for="saved-folder-filter">Folder</label><select id="saved-folder-filter"><option value="All">All saved stories</option></select><form id="new-folder-form"><input id="new-folder-name" type="text" maxlength="32" placeholder="New folder name" aria-label="New folder name"><button type="submit">Add folder</button></form></section>
+      <div class="story-heading"><div><span>THE DAILY BRIEFING</span><h2 id="story-heading-title">Top stories</h2></div><small id="visible-count"></small></div>
+      <section id="stories" class="stories" aria-live="polite"><div class="loading"><span class="spinner"></span>Putting today's paper together…</div></section>
+    </main>
+    <footer><div class="footer-brand">The Daily Edition<span>.</span></div><p>Independent reading starts with knowing where a story comes from.</p><p class="footer-small">Headlines and excerpts belong to their publishers. Briefs use publisher-provided excerpts. Always visit the original source for the full story.</p><p class="footer-credit">Made with care by <strong>Dhankhar</strong></p></footer>
+  </div>
+  <script src="app.js"></script>
+</body>
+</html>
