@@ -6,8 +6,10 @@ A newspaper-style news reader that assembles headlines from publisher RSS feeds 
 
 [Open The Daily Edition](https://daily-edition-newspaper.onrender.com/)
 
-<img width="400" height="400" alt="image" src="https://github.com/user-attachments/assets/7452c215-2e38-4d51-a7d0-de1bc8be9924" />
-<img width="400" height="400" alt="image" src="https://github.com/user-attachments/assets/76c049ad-ca90-4043-8d92-59b6b77f04ed" />
+<img width="300" height="300" alt="image" src="https://github.com/user-attachments/assets/7452c215-2e38-4d51-a7d0-de1bc8be9924" />
+<img width="300" height="300" alt="image" src="https://github.com/user-attachments/assets/76c049ad-ca90-4043-8d92-59b6b77f04ed" />
+<img width="300" height="300" alt="image" src="https://github.com/user-attachments/assets/265834d8-91bf-4104-8a30-32e202487aa7" />
+
 
 
 
